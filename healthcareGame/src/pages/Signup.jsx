@@ -29,7 +29,7 @@ const Signup = () => {
 
             alert("Signup successful!"); // Display success message
             setLoading(false); // Stop loading indicator
-            navigate('/'); // Redirect to login page
+            navigate('/home'); // Redirect to login page
 
             // Reset form after successful signup
             setFirstName('');
