@@ -1,0 +1,144 @@
+.quiz-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.topic-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.topic-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.topic-button:hover {
+  background-color: #0056b3;
+}
+
+.quiz-section {
+  margin-top: 20px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-button {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.option-button.correct {
+  background-color: #28a745;
+  color: white;
+}
+
+.option-button.incorrect {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+
+.correct-answer-note {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #28a745;
+}
+
+.next-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-button:hover {
+  background-color: #0056b3;
+}
+
+.appreciation-section {
+  margin-top: 20px;
+}
+
+.appreciation-message {
+  color: #28a745;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.points-display {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.reset-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: #0056b3;
+}
+
+
+.back-button {
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.back-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.navigation-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+.back-to-topics-button {
+  margin-left: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.back-to-topics-button:hover {
+  background-color: #f5c6cb;
+}
+
+.navigation-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

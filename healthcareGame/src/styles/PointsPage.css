@@ -1,0 +1,14 @@
+.points-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .chart-container {
+    margin-top: 20px;
+  }
+  
