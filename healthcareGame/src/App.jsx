@@ -4,6 +4,8 @@ import GamePage from "./pages/GamePage";
 import QuizPage from "./pages/QuizPage";
 import HomePage from "./pages/HomePage";
 import AboutUs from "./pages/AboutUs";
+import HealthcarePage from "./pages/HealthcarePage";
+import ScorePage from "./pages/ScorePage";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -41,8 +43,10 @@ const App = () => {
           /> */}
           <Route path="/home" element={<><Navbar /><HomePage userDetails={userDetails} /></>} />
           <Route path="/game" element={<><Navbar /><GamePage /></>} />
-          <Route path="/quiz" element={<><Navbar /><QuizPage /></>} />
+          <Route path="/quiz/:topicName" element={<><Navbar /><QuizPage /></>} />
           <Route path="/about" element={<><Navbar /><AboutUs /></>} />
+          <Route path="/healthcare" element={<><Navbar /><HealthcarePage /></>} />
+          <Route path="/score" element={<><Navbar /><ScorePage /></>} />
           <Route path="/" element={<><Navbar1/><Login /></>} />
           <Route path="/Signup" element={<><Navbar1 /><Signup /></>} />
         </Routes>

@@ -8,7 +8,8 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const app = express();
 const User = require('./models/userSchema');
-const QuizPoints = require('./models/QuizePoints')
+const QuizPoints = require('./models/QuizePoints');
+const Score = require('./models/ScoreSchema');
 dotenv.config();
 app.use(cors());
 app.use(express.json());
@@ -91,6 +92,83 @@ app.post('/savePoints', async (req, res) => {
       res.status(500).json({ error: 'Error saving points' });
     }
   });
+
+// Save quiz score
+app.post('/saveScore', async (req, res) => {
+  const { username, topic, score, totalQuestions = 20, timeSpent = 0 } = req.body;
+  
+  try {
+    // Check if score already exists for this user and topic
+    const existingScore = await Score.findOne({ username, topic });
+    
+    if (existingScore) {
+      // Update existing score if new score is higher
+      if (score > existingScore.score) {
+        existingScore.score = score;
+        existingScore.totalQuestions = totalQuestions;
+        existingScore.timeSpent = timeSpent;
+        await existingScore.save();
+        res.status(200).json({ message: 'Score updated successfully', score: existingScore });
+      } else {
+        res.status(200).json({ message: 'Score already exists and is higher', score: existingScore });
+      }
+    } else {
+      // Create new score
+      const newScore = new Score({ username, topic, score, totalQuestions, timeSpent });
+      await newScore.save();
+      res.status(201).json({ message: 'Score saved successfully', score: newScore });
+    }
+  } catch (error) {
+    console.error('Error saving score:', error);
+    res.status(500).json({ error: 'Error saving score' });
+  }
+});
+
+// Get user scores
+app.get('/getScores/:username', async (req, res) => {
+  const { username } = req.params;
+  
+  try {
+    const scores = await Score.find({ username }).sort({ date: -1 });
+    res.status(200).json({ scores });
+  } catch (error) {
+    console.error('Error fetching scores:', error);
+    res.status(500).json({ error: 'Error fetching scores' });
+  }
+});
+
+// Get user score statistics
+app.get('/getScoreStats/:username', async (req, res) => {
+  const { username } = req.params;
+  
+  try {
+    const scores = await Score.find({ username });
+    
+    if (scores.length === 0) {
+      return res.status(200).json({ 
+        averageScore: 0, 
+        totalTopics: 0, 
+        bestScore: 0, 
+        bestTopic: null 
+      });
+    }
+    
+    const totalScore = scores.reduce((sum, score) => sum + score.score, 0);
+    const averageScore = Math.round(totalScore / scores.length);
+    const bestScore = Math.max(...scores.map(s => s.score));
+    const bestTopic = scores.find(s => s.score === bestScore)?.topic;
+    
+    res.status(200).json({
+      averageScore,
+      totalTopics: scores.length,
+      bestScore,
+      bestTopic
+    });
+  } catch (error) {
+    console.error('Error fetching score stats:', error);
+    res.status(500).json({ error: 'Error fetching score statistics' });
+  }
+});
   app.post("/update-progress", async (req, res) => {
     const { userId, glasses, isMeditationDone, isWorkoutDone, totalPoints } = req.body;
   

@@ -1,43 +1,166 @@
-/* General layout */
+/* Modern HomePage Styles */
+.home-page {
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
 .hero-section {
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
+  animation: fadeInUp 0.8s ease-out;
 }
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.healthcare-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.health-icon {
+  font-size: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.health-icon:hover {
+  transform: scale(1.2) rotate(10deg);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
+}
+
+.health-icon:nth-child(1) { animation-delay: 0s; }
+.health-icon:nth-child(2) { animation-delay: 0.2s; }
+.health-icon:nth-child(3) { animation-delay: 0.4s; }
+.health-icon:nth-child(4) { animation-delay: 0.6s; }
+.health-icon:nth-child(5) { animation-delay: 0.8s; }
 
 .main-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 30px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin: 40px auto;
+  max-width: 1200px;
+  animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-/* Water Tracker */
+/* Water Tracker Styles */
 .water-tracker {
-  flex: 1;
-  text-align: left;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.water-tracker:hover {
+  transform: translateY(-5px);
+}
+
+.tracker-header, .challenges-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.tracker-icon, .challenges-icon {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.tracker-icon:hover, .challenges-icon:hover {
+  transform: scale(1.1);
+}
+
+.water-tracker h2, .other-challenges h2 {
+  color: #4CAF50;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.motivational-text {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+  font-style: italic;
 }
 
 .glasses-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Two rows of 4 glasses */
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  margin-top: 10px;
+  margin: 25px 0;
 }
 
 .glass {
-  width: 50px;
-  height: 100px;
-  border: 2px solid #007bff;
-  border-radius: 5px;
+  width: 60px;
+  height: 120px;
+  border: 3px solid #87CEEB;
+  border-radius: 15px 15px 5px 5px;
   position: relative;
   cursor: pointer;
-  background-color: white;
-  transition: background-color 0.3s;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.glass:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
 }
 
 .glass.filled {
-  background-color: #007bff;
+  background: linear-gradient(180deg, #87CEEB 0%, #5F9EA0 100%);
+  border-color: #87CEEB;
+  animation: heartbeat 0.6s ease-in-out;
+}
+
+.glass.filled::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  border-radius: 12px 12px 3px 3px;
 }
 
 .water {
@@ -45,9 +168,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 123, 255, 0.5);
-  height: 100%;
+  background: linear-gradient(180deg, #87CEEB 0%, #5F9EA0 100%);
+  height: 0;
   border-radius: 3px;
+  transition: height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass.filled .water {
+  height: 100%;
 }
 
 .glass-number {
@@ -55,79 +183,248 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: bold;
+  font-weight: 800;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 
-/* 15-Minute Challenges */
+/* Challenge Styles */
 .other-challenges {
-  flex: 1;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
+
+.other-challenges:hover {
+  transform: translateY(-5px);
+}
+
+/* Removed duplicate .other-challenges h2 as it's now handled above */
 
 .challenge {
-  width: 200px;
-  height: 50px;
-  border: 2px solid #007bff;
-  border-radius: 10px;
-  margin: 10px auto;
+  width: 250px;
+  height: 70px;
+  border: 3px solid;
+  border-radius: 20px;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  font-size: 18px;
-  font-weight: bold;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.challenge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.challenge:hover::before {
+  left: 100%;
 }
 
 .challenge.meditation {
-  color: #6c757d; /* Grey text for meditation */
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.challenge.meditation:hover {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
 }
 
 .challenge.meditation.completed {
-  background-color: #28a745; /* Green when completed */
+  background: linear-gradient(45deg, #28a745, #20c997);
   color: white;
+  border-color: #20c997;
+  animation: pulse 0.6s ease-in-out;
 }
 
 .challenge.workout {
-  color: #17a2b8; /* Cyan text for workout */
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.challenge.workout:hover {
+  background: linear-gradient(45deg, #ffc107, #ff8c00);
+  color: white;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
 }
 
 .challenge.workout.completed {
-  background-color: #ffc107; /* Yellow when completed */
+  background: linear-gradient(45deg, #ffc107, #ff8c00);
   color: white;
+  border-color: #ff8c00;
+  animation: pulse 0.6s ease-in-out;
 }
 
-/* Highlighted Date and Points */
+/* Progress and Stats */
 .highlighted-info {
-  margin: 30px auto;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 .highlighted-info .date {
   display: block;
-  margin: 10px 0;
-  font-size: 30px;
-  color: #007bff;
-  text-decoration: underline;
+  margin: 15px 0;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
 }
 
 .highlighted-info .points {
-  font-size: 28px;
-  color: #28a745;
+  font-size: 2rem;
+  color: white;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .success-message {
-  font-weight: bold;
-  color: #28a745; /* Green for success */
+  font-weight: 700;
+  color: white;
+  font-size: 1.1rem;
+  margin: 10px 0;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .final-message {
-  font-weight: bold;
-  font-size: 20px;
-  color: #ff5722; /* Bold orange color for final appreciation */
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+  margin-top: 20px;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #87CEEB, #5F9EA0);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s linear forwards;
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .glasses-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .glass {
+    width: 50px;
+    height: 100px;
+  }
+  
+  .challenge {
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glasses-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .glass {
+    width: 60px;
+    height: 120px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2rem;
+  }
 }
